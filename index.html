@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Página Romântica Interativa</title>
+  <style>
+    :root{
+      --bg-top:#fff0f6;
+      --bg-bottom:#fff8f0;
+      --accent:#ff466b;
+      --accent-dark:#c41f45;
+      --muted:#6b6168;
+      --glass:rgba(255,255,255,0.55);
+      --radius:18px;
+      --heart-size:120px;
+      font-family:'Poppins', sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg-top),var(--bg-bottom));
+      display:flex;align-items:center;justify-content:center;
+      padding:20px;
+      position:relative; /* importante para os corações */
+      overflow:hidden;
+    }
+
+    .card{
+      width:100%;max-width:500px;
+      background:var(--glass);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:0 8px 24px rgba(193,62,88,0.18);
+      display:flex;flex-direction:column;align-items:center;
+      text-align:center;
+      position:relative;
+    }
+
+    h1{margin:0;font-size:24px;color:var(--accent-dark)}
+    p.subtitle{margin:6px 0 18px;color:var(--muted);font-size:14px}
+
+    .heart{
+      width:var(--heart-size);height:var(--heart-size);
+      margin:18px 0;
+      cursor:pointer;
+      animation:float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+    }
+
+    .poem{
+      background:white;
+      padding:14px;
+      border-radius:12px;
+      font-size:15px;
+      line-height:1.5;
+      color:#3b2a33;
+      margin-bottom:14px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.06);
+      animation:fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .btn{
+      border:0;padding:12px 16px;border-radius:12px;
+      font-weight:600;cursor:pointer;font-size:14px;
+      background:var(--accent);color:white;
+      box-shadow:0 6px 16px rgba(255,70,107,0.2);
+      margin:6px 0;width:100%;
+      transition:transform .2s;
+    }
+    .btn:active{transform:scale(0.96)}
+    .btn.secondary{background:transparent;color:var(--accent-dark);border:1px solid var(--accent)}
+
+    strong{
+        color: #ff466b;
+    }
+    .flying-heart{
+      position:absolute;
+      fill:var(--accent);
+      width:22px;height:22px;
+      opacity:0;
+      animation:fly 3s linear forwards;
+    }
+
+    @keyframes fly{
+      0%{opacity:1;transform:translateY(0) scale(1)}
+      100%{opacity:0;transform:translateY(-250px) scale(1.5)}
+    }
+
+    @media(max-width:420px){
+      h1{font-size:20px}
+      .poem{font-size:14px}
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Com amor no toque</h1>
+    <p class="subtitle">Toque no coração e sinta a magia ✨</p>
+
+    <svg class="heart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 21s-8.5-5.4-10.2-9.1C-1.2 7.4 4 3 7.6 6.1 9.3 7.6 12 10.9 12 10.9s2.7-3.3 4.4-4.8C20 3 25.2 7.4 22.2 11.9 20.5 15.6 12 21 12 21z" fill="var(--accent)"/>
+    </svg>
+
+    <article class="poem">
+      parabens meu amor
+
+<p>19 aninhos de idade, só de pensar que estou com vc desde seus 15 aninhos, e hoje poder ver a mulher que voce se tornou... </p>
+<p>Eu tenho orgulho demais da adulta que vc esta se tornando, da esposa que vc esta se formando, e provando pra mim que foi a melhor escolha da minha vida!!!</p>
+
+<p>Quero te agradecer por confiar e acreditar em mim e no meu potencial, principalmente nessa fase onde estou entrando no mercado de tecnologia.</p>
+
+
+<p><strong>De verdade MUITO OBRIGADO</strong></p>
+
+
+<p>Não sei o que faria sem voce, eu cresci muito nesses 3 juntos, obrigado por me fazer evoluir como homem, eu nao vejo mh vida sem a sua companhia e seus cuidados</p>
+
+<p><strong>Você é, e pra sempre sera o amor da minha vida!!!</strong></p>
+
+<strong>
+    com muito amor <br>
+    KIKIII
+</strong>
+      
+    </article>
+
+    <button class="btn" id="shareBtn">Compartilhar carinho</button>
+    <button class="btn secondary" id="surpriseBtn">Surpresa romântica</button>
+  </main>
+
+  <script>
+    const heart=document.querySelector('.heart');
+    heart.addEventListener('click',()=>{
+      const rect=heart.getBoundingClientRect();
+      for(let i=0;i<6;i++){
+        const h=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        h.setAttribute('viewBox','0 0 24 24');
+        h.innerHTML='<path d="M12 21s-8.5-5.4-10.2-9.1C-1.2 7.4 4 3 7.6 6.1 9.3 7.6 12 10.9 12 10.9s2.7-3.3 4.4-4.8C20 3 25.2 7.4 22.2 11.9 20.5 15.6 12 21 12 21z"/>';
+        h.classList.add('flying-heart');
+        h.style.left=(rect.left+rect.width/2+ (Math.random()*40-20))+'px';
+        h.style.top=(rect.top+window.scrollY)+'px';
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),3000);
+      }
+    });
+
+    document.getElementById('shareBtn').addEventListener('click',async()=>{
+      const text='Um gesto de carinho ❤️';
+      if(navigator.share){
+        try{await navigator.share({title:document.title,text})}
+        catch(e){alert('Não foi possível compartilhar')}
+      }else{
+        try{await navigator.clipboard.writeText(text);alert('Copiado! Cole e envie 💌')}
+        catch(e){alert('Seu navegador não suporta compartilhamento.')}
+      }
+    });
+
+    document.getElementById('surpriseBtn').addEventListener('click',()=>{
+      alert('Surpresa 💕 Você é muito especial!');
+    });
+  </script>
+</body>
+</html>
