@@ -136,8 +136,8 @@
       
     </article>
 
-    <button class="btn" id="shareBtn">Compartilhar carinho</button>
-    <button class="btn secondary" id="surpriseBtn">Surpresa romântica</button>
+  
+    <button class="btn secondary" id="surpriseBtn">Para minha Emy</button>
   </main>
 
   <script>
@@ -156,16 +156,7 @@
       }
     });
 
-    document.getElementById('shareBtn').addEventListener('click',async()=>{
-      const text='Um gesto de carinho ❤️';
-      if(navigator.share){
-        try{await navigator.share({title:document.title,text})}
-        catch(e){alert('Não foi possível compartilhar')}
-      }else{
-        try{await navigator.clipboard.writeText(text);alert('Copiado! Cole e envie 💌')}
-        catch(e){alert('Seu navegador não suporta compartilhamento.')}
-      }
-    });
+    
 
     document.getElementById('surpriseBtn').addEventListener('click',()=>{
       alert('Surpresa 💕 Você é muito especial!');
